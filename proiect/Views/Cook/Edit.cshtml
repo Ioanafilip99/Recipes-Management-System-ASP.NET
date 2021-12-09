@@ -1,0 +1,46 @@
+﻿@model proiect.Models.Cook
+
+@{
+    ViewBag.Title = "Update cook";
+}
+
+<h2>@ViewBag.Title</h2>
+<br />
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Cook", method: FormMethod.Post))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    @Html.HiddenFor(c => c.CookId)
+
+    @Html.LabelFor(c => c.Name, "Name:")
+    <br />
+    @Html.EditorFor(c => c.Name, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(bt => bt.Name, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(c => c.ContactInfo.PhoneNumber, "Phone number:")
+    <br />
+    @Html.EditorFor(c => c.ContactInfo.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(bt => bt.ContactInfo.PhoneNumber, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(c => c.ContactInfo.Email, "Email:")
+    <br />
+    @Html.EditorFor(c => c.ContactInfo.Email, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(c => c.ContactInfo.Email, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(c => c.ContactInfo.Age, "Age :")
+    <br />
+    @Html.EditorFor(c => c.ContactInfo.Age, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(c => c.ContactInfo.Age, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(c => c.ContactInfo.GenderType, "Gender :")
+    <br />
+    @Html.EditorFor(c => c.ContactInfo.GenderType, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(c => c.ContactInfo.GenderType, "", new { @class = "text-danger" })
+    <br />
+
+    <button class="btn btn-primary" type="submit">Update</button>
+}

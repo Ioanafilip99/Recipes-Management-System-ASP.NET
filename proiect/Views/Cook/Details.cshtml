@@ -1,0 +1,40 @@
+﻿@model proiect.Models.Cook
+
+<h2>@Model.Name</h2>
+
+<table>
+    <tbody>
+        <tr>
+            <td>@Html.LabelFor(c => c.ContactInfo.PhoneNumber, "Phone number:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(c => c.ContactInfo.PhoneNumber)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(c => c.ContactInfo.Email, "Email :", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(c => c.ContactInfo.Email)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(c => c.ContactInfo.Age, "Age :", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(c => c.ContactInfo.Age)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(c => c.ContactInfo.GenderType, "Gender:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(c => c.ContactInfo.GenderType)</td>
+        </tr>    
+    </tbody>
+</table>
+
+<br />
+<br />
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Cook", method: FormMethod.Get, routeValues: new { id = Model.CookId }))
+{
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Update</button>
+}
+
+@using (Html.BeginForm(actionName: "Delete", controllerName: "Cook", method: FormMethod.Post, routeValues: new { id = Model.CookId }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Delete</button>
+}

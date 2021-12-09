@@ -1,0 +1,24 @@
+﻿@model proiect.Models.RecipeType
+
+@{
+    ViewBag.Title = "Create a recipe type";
+}
+
+<h2>@ViewBag.Title</h2>
+<br />
+
+@using (Html.BeginForm(actionName: "New", controllerName: "RecipeType", method: FormMethod.Post))
+{
+    @Html.LabelFor(rt => rt.Name, "Name:")
+    <br />
+    @Html.TextBoxFor(rt => rt.Name, null, new
+    {
+        placeholder = "Type in the recipe type's name",
+        @class =
+   "form-control"
+    })
+    @Html.ValidationMessageFor(rt => rt.Name, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    <button class="btn btn-primary" type="submit">Create</button>
+}

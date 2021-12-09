@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Recipes";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (ViewBag.Recipes != null)
+{
+    foreach (var recipe in ViewBag.Recipes)
+    {
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @Html.Label("Title", "Title:")
+                <br />
+                <p>@recipe.Title</p>
+
+                @Html.Label("Cook", "Cook:")
+                <br />
+                <p>@recipe.Cook.Name</p>
+
+                @Html.Label("Description", "Description:")
+                <br />
+                <p>@recipe.Description</p>
+
+
+                @using (Html.BeginForm(actionName: "Details", controllerName: "Recipe", method: FormMethod.Get,
+                routeValues: new { id = recipe.RecipeId }))
+                {
+                    <button style="margin-right:5px" class="btn btn-primary col-lg-1"
+                            type="submit">
+                        Details
+                    </button>
+                }
+            </div>
+        </div>
+    }
+}
+
+@Html.ActionLink("Add recipe", "New")

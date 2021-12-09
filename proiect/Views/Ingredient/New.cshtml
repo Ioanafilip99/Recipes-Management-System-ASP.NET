@@ -1,0 +1,23 @@
+﻿@model proiect.Models.Ingredient
+
+@{
+    ViewBag.Title = "Create a ingredient";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Ingredient", method: FormMethod.Post))
+{
+    @Html.LabelFor(i => i.Name, "Name:")
+    <br />
+    @Html.TextBoxFor(i => i.Name, null, new
+    {
+        placeholder = "Type in the ingredient's name",
+        @class =
+   "form-control"
+    })
+    @Html.ValidationMessageFor(i => i.Name, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    <button class="btn btn-primary" type="submit">Create</button>
+}

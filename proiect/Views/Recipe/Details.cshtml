@@ -1,0 +1,92 @@
+﻿@model proiect.Models.Recipe
+
+@{
+    ViewBag.Title = "Recipe Details";
+}
+
+<h2>@Model.Title</h2>
+<br />
+
+
+@if (Model.Cook != null)
+{
+    @Html.Label("Cook", "Cook:")
+    <br />
+    <p>@Model.Cook.Name</p>
+
+    @Html.Label("Cook", "ContactInfo:")
+    <br />
+    <p>@Model.Cook.ContactInfo.PhoneNumber</p>
+}
+
+
+@Html.Label("Description", "Description:")
+<br />
+<div class="panel-body">
+    @if (Model.Description.IsEmpty())
+    {
+        <p>This recipe has no summary to print.</p>
+    }
+    else
+    {
+        <p>@Model.Description</p>
+    }
+</div>
+
+
+@Html.Label("Steps", "Steps:")
+<br />
+<div class="panel-body">
+    @if (Model.Steps.IsEmpty())
+    {
+        <p>This recipe has no steps to print.</p>
+    }
+    else
+    {
+        <p>@Model.Steps</p>
+    }
+</div>
+
+@Html.Label("CookTime", "Cooking time:")
+<br />
+<div class="panel-body">
+    <p>@Model.CookTime</p>
+</div>
+
+@if (Model.Ingredients.Count > 0)
+{
+    @Html.Label("Ingredients", "Ingredients:")
+    <br />
+    <ul>
+        @foreach (var ingredient in Model.Ingredients)
+        {
+            <li>@ingredient.Name</li>
+        }
+    </ul>
+}
+<br />
+
+@if (Model.RecipeType != null)
+{
+    @Html.Label("RecipeType", "Recipe Type:")
+    <br />
+    @Html.DisplayFor(b => b.RecipeType.Name)
+    <br />
+}
+<br />
+<br />
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Recipe", method: FormMethod.Get, routeValues: new { id = Model.RecipeId }))
+{
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Update</button>
+}
+
+@using (Html.BeginForm(actionName: "Delete", controllerName: "Recipe", method: FormMethod.Post, routeValues: new { id = Model.RecipeId }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Delete</button>
+}
+<br />
+<br />
+<br />
+<br />

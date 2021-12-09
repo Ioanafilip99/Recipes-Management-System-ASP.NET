@@ -1,0 +1,41 @@
+﻿@model proiect.Models.ContactInfo
+
+@{
+    ViewBag.Title = "Update contact info"; 
+}
+
+<h2>@ViewBag.Title</h2>
+<br />
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "ContactInfo", method: FormMethod.Post))
+
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    @Html.HiddenFor(ci => ci.ContactInfoId)
+
+    @Html.LabelFor(ci => ci.PhoneNumber, "Phone Number:")
+    <br />
+    @Html.EditorFor(ci => ci.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(ci => ci.PhoneNumber, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(ci => ci.Email, "Email:")
+    <br />
+    @Html.EditorFor(ci => ci.Email, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(ci => ci.Email, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(ci => ci.Age, " Age:")
+    <br />
+    @Html.EditorFor(ci => ci.Age, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(ci => ci.Age, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(ci => ci.GenderType, " GenderType:")
+    <br />
+    @Html.EditorFor(ci => ci.GenderType, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(ci => ci.GenderType, "", new { @class = "text-danger" })
+    <br />
+
+    <button class="btn btn-primary" type="submit">Update</button>
+}

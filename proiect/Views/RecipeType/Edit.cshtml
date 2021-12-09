@@ -1,0 +1,22 @@
+﻿@model proiect.Models.RecipeType
+
+@{
+    ViewBag.Title = "Update recipe type";
+}
+
+<h2>@ViewBag.Title</h2>
+<br />
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "RecipeType", method: FormMethod.Post))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    @Html.HiddenFor(rt => rt.RecipeTypeId)
+
+    @Html.LabelFor(rt => rt.Name, "Name:")
+    <br />
+    @Html.EditorFor(rt => rt.Name, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(bt => bt.Name, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    <button class="btn btn-primary" type="submit">Update</button>
+}

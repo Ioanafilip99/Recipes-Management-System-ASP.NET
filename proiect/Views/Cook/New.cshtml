@@ -1,0 +1,52 @@
+﻿@model proiect.Models.CookContactViewModel
+
+@{
+    ViewBag.Title = "Create a cook";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<br />
+@using (Html.BeginForm(actionName: "New", controllerName: "Cook", method: FormMethod.Post))
+{
+    @Html.LabelFor(c => c.Name, "Name:")
+    <br />
+    @Html.TextBoxFor(c => c.Name, null, new
+    {
+        placeholder = "Type in the cook's name",
+        @class = "form-control"
+    })
+    @Html.ValidationMessageFor(c => c.Name, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.LabelFor(ci => ci.PhoneNumber, "Phone number:")
+    <br />
+    @Html.TextBoxFor(ci => ci.PhoneNumber, null, new { placeholder = "Type in the phone number", @class = "form-control" })
+    @Html.ValidationMessageFor(ci => ci.PhoneNumber, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.LabelFor(ci => ci.Email, "Email:")
+    <br />
+    @Html.TextBoxFor(ci => ci.Email, null, new { placeholder = "Type in the Email", @class = "form-control" })
+    @Html.ValidationMessageFor(ci => ci.Email, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.LabelFor(ci => ci.Age, "Age:")
+    <br />
+    @Html.TextBoxFor(ci => ci.Age, null, new { placeholder = "Type in the age", @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.Age, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("GenderType", "Gender:")
+    <br />
+    @Html.DropDownListFor(ci => ci.GenderType, new SelectList(ViewBag.GenderList, "Value", "Text"), "Choose a gender", new { @class = "form-control" })
+    @Html.ValidationMessageFor(ci => ci.GenderType, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <button class="btn btn-primary" type="submit">Create</button>
+}

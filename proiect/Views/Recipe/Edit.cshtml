@@ -1,0 +1,66 @@
+﻿@model proiect.Models.Recipe
+@{
+    ViewBag.Title = "Update Recipe";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Recipe"))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.HiddenFor(r => r.RecipeId)
+    <br />
+
+    @Html.Label("Title", "Recipe Title:")
+    <br />
+    @Html.EditorFor(r => r.Title, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(r => r.Title, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Description", "Description:")
+    <br />
+    @Html.TextAreaFor(r => r.Description, new { @class = "form-control", @rows = "10" })
+    @Html.ValidationMessageFor(r => r.Description, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Steps", "Steps:")
+    <br />
+    @Html.TextAreaFor(r => r.Steps, new { @class = "form-control", @rows = "20" })
+    @Html.ValidationMessageFor(r => r.Steps, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("CookTime", "Recipe cooking time:")
+    <br />
+    @Html.EditorFor(r => r.CookTime, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(r => r.CookTime, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("RecipeType", "RecipeType:")
+    <br />
+    @Html.DropDownListFor(r => r.RecipeTypeId, new SelectList(Model.RecipeTypesList, "Value", "Text"), "Choose a recipe type", new { @class = "form-control" })
+    @Html.ValidationMessageFor(r => r.RecipeTypeId, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Cook", "Cook:")
+    <br />
+    @Html.DropDownListFor(r => r.CookId, new SelectList(Model.CooksList, "Value", "Text"), "Choose a cook", new { @class = "form-control" })
+    @Html.ValidationMessageFor(r => r.CookId, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(r => r.IngredientsList, "Choose ingredients:")
+    <br />
+    for (int i = 0; i < Model.IngredientsList.Count(); i++)
+    {
+        @Html.HiddenFor(r => r.IngredientsList[i].Id)
+        @Html.HiddenFor(r => r.IngredientsList[i].Name)
+        @Html.CheckBoxFor(r => r.IngredientsList[i].Checked)
+        @Html.DisplayFor(r => r.IngredientsList[i].Name)
+        <br />
+    }
+    <br />
+    <br />
+
+    <button class="btn btn-primary" type="submit">Update</button>
+}

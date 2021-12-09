@@ -1,0 +1,52 @@
+﻿@model proiect.Models.ContactInfo
+
+@{
+    ViewBag.Title = "Create a contact";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<br />
+@using (Html.BeginForm(actionName: "New", controllerName: "ContactInfo", method: FormMethod.Post))
+{
+    @Html.LabelFor(c => c.PhoneNumber, "Phone number:")
+    <br />
+    @Html.TextBoxFor(c => c.PhoneNumber, null, new
+    {
+        placeholder = "Type in the phone number",
+        @class =
+   "form-control"
+    })
+    @Html.ValidationMessageFor(c => c.PhoneNumber, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.LabelFor(c => c.Email, "Email:")
+    <br />
+    @Html.TextBoxFor(c => c.Email, null, new
+    {
+        placeholder = "Type in the email",
+        @class =
+   "form-control"
+    })
+    @Html.ValidationMessageFor(c => c.Email, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.LabelFor(c => c.Age, "Age:")
+    <br />
+    @Html.TextBoxFor(c => c.Age, null, new { placeholder = "Type in the age", @class = "form-control" })
+    @Html.ValidationMessageFor(c => c.Age, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("GenderType", "Gender:")
+    <br />
+    @Html.DropDownListFor(c => c.GenderType, new SelectList(ViewBag.GenderList, "Value", "Text"), "Choose a gender", new { @class = "form - control" })
+
+     @Html.ValidationMessageFor(c => c.GenderType, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <button class="btn btn-primary" type="submit">Create</button>
+}

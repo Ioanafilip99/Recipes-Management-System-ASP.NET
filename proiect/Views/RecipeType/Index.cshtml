@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Recipe Types";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table">
+    <thead>
+    <th>Name</th>
+    <th>Update/Remove</th>
+    </thead>
+    <tbody>
+        @foreach (var recipeType in ViewBag.RecipeTypes)
+        {
+            <tr>
+                <td>@recipeType.Name</td>
+                <td>
+                    @using (Html.BeginForm(actionName: "Edit", controllerName: "RecipeType", method:FormMethod.Get,
+                    routeValues: new { id = recipeType.RecipeTypeId }))
+                    {
+                        <button type="submit" class="btn btn-link col-lg-3">Update</button>
+                    }
+                    @using (Html.BeginForm(actionName: "Delete", controllerName: "RecipeType", method:FormMethod.Post,
+                    routeValues: new { id = recipeType.RecipeTypeId }))
+                    {
+                        @Html.HttpMethodOverride(HttpVerbs.Delete)
+                        <button type="submit" class="btn btn-link col-lg-3">Remove</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+
+@Html.ActionLink("Add recipe type", "New")

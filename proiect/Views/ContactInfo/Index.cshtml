@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Contact Info";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table">
+    <thead>
+    <th>Name</th>
+    <th>Update/Remove</th>
+    </thead>
+    <tbody>
+        @foreach (var contactInfo in ViewBag.ContactInfos)
+        {
+            <tr>
+                <td>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            @Html.Label("PhoneNumber", "PhoneNumber:")
+                            <br />
+                            <p>@contactInfo.PhoneNumber</p>
+
+                            @Html.Label("Email", "Email:")
+                            <br />
+                            <p>@contactInfo.Email</p>
+                       
+                            @Html.Label("Age", "Age:")
+                            <br />
+                            <p>@contactInfo.Age</p>
+
+                            @Html.Label("GenderType", "GenderType:")
+                            <br />
+                            <p>@contactInfo.GenderType</p>
+                        </div>
+                </td>
+
+                <td>
+                    @using (Html.BeginForm(actionName: "Edit", controllerName: "ContactInfo", method:
+                   FormMethod.Get,
+                    routeValues: new { id = contactInfo.ContactInfoId }))
+                    {
+                        <button type="submit" class="btn btn-link col-lg-3">Update</button>
+                    }
+                    @using (Html.BeginForm(actionName: "Delete", controllerName: "ContactInfo", method:
+                   FormMethod.Post,
+                    routeValues: new { id = contactInfo.ContactInfoId }))
+                    {
+                        @Html.HttpMethodOverride(HttpVerbs.Delete)
+                        <button type="submit" class="btn btn-link col-lg-3">Remove</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+@Html.ActionLink("Add contact info", "New")

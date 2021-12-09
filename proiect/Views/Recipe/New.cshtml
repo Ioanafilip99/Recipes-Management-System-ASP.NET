@@ -1,0 +1,65 @@
+﻿@model proiect.Models.Recipe
+@{
+    ViewBag.Title = "Create Recipe";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Recipe", method: FormMethod.Post))
+{
+    @Html.Label("Title", "Recipe Title:")
+    <br />
+    @Html.TextBoxFor(r => r.Title, null, new { placeholder = "Type in the recipe's title", @class = "formcontrol" })
+    @Html.ValidationMessageFor(b => b.Title, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("Description", "Description:")
+    <br />
+    @Html.TextArea("Description", null, new { placeholder = "Type in the recipe's description", @class = "formcontrol", @rows = "10" })
+    @Html.ValidationMessageFor(r => r.Description, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("Steps", "Steps:")
+    <br />
+    @Html.TextArea("Steps", null, new { placeholder = "Type in the recipe's steps", @class = "formcontrol", @rows = "20" })
+    @Html.ValidationMessageFor(r => r.Steps, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("CookTime", "Cooking Time:")
+    <br />
+    @Html.TextBoxFor(r => r.CookTime, null, new { placeholder = "Type in the recipe's cooking time", @class = "formcontrol" })
+    @Html.ValidationMessageFor(r => r.CookTime, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.LabelFor(r => r.IngredientsList, "Choose ingredients:")
+    <br />
+    for (int i = 0; i < Model.IngredientsList.Count(); i++)
+    {
+        @Html.HiddenFor(r => r.IngredientsList[i].Id)
+        @Html.HiddenFor(r => r.IngredientsList[i].Name)
+        @Html.CheckBoxFor(r => r.IngredientsList[i].Checked)
+        @Html.DisplayFor(r => r.IngredientsList[i].Name)
+        <br />
+    }
+    <br />
+
+    @Html.Label("RecipeType", "Recipe Type:")
+    <br />
+    @Html.DropDownListFor(r => r.RecipeTypeId, new SelectList(Model.RecipeTypesList, "Value", "Text"), "Choose a recipe type", new { @class = "form-control" })
+    @Html.ValidationMessageFor(r => r.RecipeTypeId, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("Cook", "Cook:")
+    <br />
+    @Html.DropDownListFor(r => r.CookId, new SelectList(Model.CooksList, "Value", "Text"), "Choose a cook", new { @class = "form-control" })
+    @Html.ValidationMessageFor(r => r.CookId, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <button class="btn btn-primary" type="submit">Create</button>
+}

@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Welcome to your Recipes Book!</h1>
+    <h2>Here you can find any type of recipe you can imagine, made by the greatest cooks!</h2>
+    <p><button class="btn btn-default"> @Html.ActionLink("Recipes", "Index", "Recipe")</button></p>
+</div>
+
+<h2>You can also check out: </h2>
+<div class="list-group">
+    <button type="button" class="list-group-item">@Html.ActionLink("Recipe Types", "Index", "RecipeType")</button>
+    <button type="button" class="list-group-item">@Html.ActionLink("Ingredients", "Index", "Ingredient")</button>
+    <button type="button" class="list-group-item">@Html.ActionLink("Cooks", "Index", "Cook")</button>
+    <button type="button" class="list-group-item"> @Html.ActionLink("Contacts", "Index", "ContactInfo")</button>
+
+</div>
